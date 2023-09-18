@@ -1,0 +1,26 @@
+appwrite/**
+
+# Logs
+habits-frontend/logs
+habits-frontend/*.log
+habits-frontend/npm-debug.log*
+habits-frontend/yarn-debug.log*
+habits-frontend/yarn-error.log*
+habits-frontend/pnpm-debug.log*
+habits-frontend/lerna-debug.log*
+
+habits-frontend/node_modules
+habits-frontend/dist
+habits-frontend/dist-ssr
+habits-frontend/*.local
+
+habits-frontend/# Editor directories and files
+habits-frontend/.vscode/*
+habits-frontend/!.vscode/extensions.json
+habits-frontend/.idea
+habits-frontend/.DS_Store
+habits-frontend/*.suo
+habits-frontend/*.ntvs*
+habits-frontend/*.njsproj
+habits-frontend/*.sln
+habits-frontend/*.sw?
