@@ -1,0 +1,18 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .sidebar-icon {
+        @apply relative flex items-center justify-center w-6 h-6 mx-auto p-6 my-1.5;
+        @apply text-green-700 bg-gray-700 rounded-3xl;
+        @apply hover:bg-green-700 hover:text-gray-900 hover:rounded-xl;
+        @apply cursor-pointer transition-all ease-linear duration-150;
+
+    }
+
+    .sidebar-icon svg {
+        @apply w-6 h-6;
+    }
+}
