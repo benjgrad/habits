@@ -7,6 +7,19 @@ x-logging: &x-logging
       max-size: '10m'
 
 services:
+  reader-client:
+    build: ./onepiece-reader
+    restart: always
+    env_file: .env
+    links:
+      - reader-server
+    depends_on:
+      - reader-server
+    ports:
+      - '${REACT_PORT}:5173'
+    volumes:
+      - ./onepiece-reader:/app
+      - /app/node_modules
   traefik:
     image: traefik:2.9
     container_name: appwrite-traefik
@@ -21,8 +34,8 @@ services:
       - --entrypoints.appwrite_websecure.address=:443
     restart: unless-stopped
     ports:
-      - 80:80
-      - 443:443
+      - 8088:80
+      - 3443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./appwrite/config:/storage/config:ro
