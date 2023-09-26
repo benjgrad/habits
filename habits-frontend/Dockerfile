@@ -6,6 +6,7 @@ WORKDIR /app
 # install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
+RUN chown -R node:node ./
 
 # Fix permissions for packages
 # RUN npm config set unsafe-perm true
@@ -22,7 +23,8 @@ RUN chown -R node:node /app/dist
 
 EXPOSE 5173
 
-# Production
+# CMD ["sleep", "infinity"]
+# # Production
 RUN ["npm", "run", "build"]
 CMD ["npm", "run", "serve"]
 

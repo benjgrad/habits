@@ -8,17 +8,13 @@ x-logging: &x-logging
 
 services:
   reader-client:
-    build: ./onepiece-reader
+    build: ./habits-frontend
     restart: always
     env_file: .env
-    links:
-      - reader-server
-    depends_on:
-      - reader-server
     ports:
-      - '${REACT_PORT}:5173'
+      - '4445:5173'
     volumes:
-      - ./onepiece-reader:/app
+      - ./habits-frontend:/app
       - /app/node_modules
   traefik:
     image: traefik:2.9
@@ -30,12 +26,12 @@ services:
       - --providers.docker=true
       - --providers.docker.exposedByDefault=false
       - --providers.docker.constraints=Label(`traefik.constraint-label-stack`,`appwrite`)
-      - --entrypoints.appwrite_web.address=:80
-      - --entrypoints.appwrite_websecure.address=:443
+      - --entrypoints.appwrite_web.address=:8088
+      - --entrypoints.appwrite_websecure.address=:3443
     restart: unless-stopped
     ports:
-      - 8088:80
-      - 3443:443
+      - 8088:8088
+      - 3443:3443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./appwrite/config:/storage/config:ro
