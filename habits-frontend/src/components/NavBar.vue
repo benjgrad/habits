@@ -10,8 +10,8 @@
         </div>
     </div>
     <Sidebar :isOpen="isOpen" />
-    <div class="absolute z-[-1] top-0 bottom-0 right-0 left-0 overflow-hidden">
-        <div :class="['md:mt-0 mt-12 transition-all', isOpen ? 'ml-16 mr-[-4rem]' : 'mx-0']">
+    <div class="absolute z-[-1] md:top-0 top-12 bottom-0 right-0 left-0 overflow-scroll">
+        <div :class="['transition-all', isOpen ? 'ml-16 mr-[-4rem]' : 'mx-0']">
             <router-view />
         </div>
     </div>

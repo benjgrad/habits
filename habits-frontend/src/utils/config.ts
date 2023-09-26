@@ -1,5 +1,5 @@
 export const Server = {
-    endpoint: 'https://habits-api.gradyserver.com/v1',
+    endpoint: `${import.meta.env.VITE_HOST}/v1`,
     project: '650729a79197db741fca',
     database: '6507323cd318bbc87cdc',
     collections: {
