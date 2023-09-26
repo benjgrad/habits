@@ -18,7 +18,8 @@
             <div @click="() => navigateTo('/habits')" class=" sidebar-icon">
                 <font-awesome-icon :icon="['fas', 'jar-wheat']" />
             </div>
-            <button @click="handleLogout" class="sidebar-icon absolute bottom-3 right-2">
+            <hr class="border-gray-500 bottom-32 z-[-2] left-0 absolute w-full">
+            <button @click="handleLogout" class="sidebar-icon absolute md:bottom-4 bottom-16 right-2">
                 <font-awesome-icon :icon="['fas', 'right-from-bracket']" />
             </button>
         </div>
