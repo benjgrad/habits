@@ -23,6 +23,11 @@ const routes = [
                 component: Todo,
             },
             {
+                path: "/todo/:date",
+                name: "DayTodo",
+                component: Todo,
+            },
+            {
                 path: "/habits",
                 name: "Habits",
                 component: Habits,

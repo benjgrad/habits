@@ -9,8 +9,9 @@
             </button>
         </div>
     </div>
-    <Sidebar :isOpen="isOpen" />
-    <div class="absolute z-[-1] md:top-0 top-12 bottom-0 right-0 left-0 overflow-scroll">
+
+    <Sidebar @click="handleCloseSidebar" :isOpen="isOpen" />
+    <div @click="handleCloseSidebar" class="absolute z-[-1] md:top-0 top-12 bottom-0 right-0 left-0 overflow-scroll">
         <div :class="['transition-all', isOpen ? 'ml-16 mr-[-4rem]' : 'mx-0']">
             <router-view />
         </div>
@@ -44,6 +45,11 @@ export default {
                 this.isOpen = true;
             this.isSmallScreen = window.innerWidth < 768;
         },
+        handleCloseSidebar() {
+            if (this.isSmallScreen) {
+                this.isOpen = false;
+            }
+        }
     },
     unmounted() {
         // Remove the event listener when the component is destroyed

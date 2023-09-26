@@ -6,20 +6,33 @@
         <transition class="absolute" leave-active-class="transition-all ease-in-out duration-1000"
             leave-from-class="opacity-150" leave-to-class="opacity-0 my-0" @after-leave="focus = false">
             <div class="absolute z-10 mt-1 max-h-60 w-full">
-                <ul v-if="(focus && options && options.length > 0)"
+                <ul v-if="(focus)"
                     class="w-full z-10 list-none mt-1 max-h-56 overflow-auto rounded-xl bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                    <div v-on:click="(e) => handleOptionsSelect(e, option)" as="template" v-for="option in options"
+                    <div v-on:click="(e) => handleOptionsSelect(e, option)" as="template" v-for="option in filteredOptions"
                         :key="option.id" :value="option">
                         <li
                             :class="['text-gray-900', 'relative cursor-default select-none py-2 pl-3 pr-9', 'hover:bg-gray-100']">
                             <div class="flex items-center">
                                 <!-- <img :src="person.avatar" alt="" class="h-5 w-5 flex-shrink-0 rounded-full" /> -->
-                                <span :class="['font-normal', 'ml-3 block truncate']">{{ option.title
-                                }}</span>
+                                <span :class="['font-normal', 'ml-3 block truncate']">
+                                    {{ option.title }}
+                                </span>
                             </div>
                         </li>
 
+
                     </div>
+                    <li v-if="filteredOptionsEmpty" @click="handleSubmit"
+                        :class="['text-gray-900', 'relative cursor-default select-none py-2 pl-3 pr-3', 'hover:bg-gray-100']">
+                        <div class="flex items-center w-full text-center">
+                            <!-- <img :src="person.avatar" alt="" class="h-5 w-5 flex-shrink-0 rounded-full" /> -->
+                            <span :class="['font-normal', 'ml-3 block truncate', 'text-center', 'w-full']"><i>
+                                    ➕ Add task
+                                </i>
+                            </span>
+                        </div>
+
+                    </li>
                 </ul>
             </div>
         </transition>
@@ -34,10 +47,22 @@ export default {
     data() {
         return {
             focus: false,
-            content: ""
+            content: "",
         };
     },
     props: ["onSubmit", "options", "filterFunction"],
+    computed: {
+        filteredOptions() {
+            if (this.content === "") return this.options;
+            return this.options.filter((option: any) => {
+                return option.title.toLowerCase().includes(this.content.toLowerCase());
+            });
+        },
+        filteredOptionsEmpty() {
+            console.log("test")
+            return this.filteredOptions.length === 0;
+        }
+    },
     methods: {
         handleSubmit(e: any) {
             e.preventDefault();

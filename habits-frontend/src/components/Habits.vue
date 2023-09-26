@@ -1,7 +1,7 @@
 <template>
     <section class="container px-3 max-w-xl mx-auto flex flex-col">
         <div class=" p-16 rounded-lg text-center">
-            <div class="my-3 font-bold text-3xl md:text-5xl lg:text-6xl">
+            <div class="my-3 font-bold text-4xl md:text-5xl lg:text-6xl">
                 Habits
             </div>
             <ul>
