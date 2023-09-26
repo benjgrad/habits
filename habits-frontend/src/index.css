@@ -15,4 +15,23 @@
     .sidebar-icon svg {
         @apply w-6 h-6;
     }
+
+    .datepicker-toggle {
+        @apply inline-block w-10 h-10 relative;
+
+    }
+
+    .datepicker-toggle-button {
+        @apply absolute left-0 w-full h-full bg-gray-900 hover:rounded-sm rounded-full;
+
+
+    }
+
+    .datepicker-input {
+        @apply absolute left-0 top-0 w-full h-full border-none opacity-0 cursor-pointer;
+    }
+
+    .datepicker-input::-webkit-calendar-picker-indicator {
+        @apply absolute left-0 top-0 w-full h-full opacity-0 m-0 p-0 cursor-pointer;
+    }
 }

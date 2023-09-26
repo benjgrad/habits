@@ -10,9 +10,10 @@
         </div>
     </div>
 
-    <Sidebar @click="handleCloseSidebar" :isOpen="isOpen" />
-    <div @click="handleCloseSidebar" class="absolute z-[-1] md:top-0 top-12 bottom-0 right-0 left-0 overflow-scroll">
-        <div :class="['transition-all', isOpen ? 'ml-16 mr-[-4rem]' : 'mx-0']">
+    <Sidebar :handleCloseSidebar="handleCloseSidebar" :isOpen="isOpen" />
+    <div @click="handleCloseSidebar" class="absolute z-[-1] top-0 left-0  h-full right-0 overflow-hidden">
+        <div
+            :class="['transition-all md:top-0 top-12 h-full overflow-scroll', isOpen ? 'ml-16 mr-[-4rem]' : 'mx-0', isOpen && isSmallScreen ? 'blur-sm' : 'blur-none']">
             <router-view />
         </div>
     </div>

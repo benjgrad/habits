@@ -19,6 +19,7 @@
                 </div>
 
             </div>
+
             <AutoComplete :options="getHabits" :onSubmit="handleAddTodo" />
 
             <ul>

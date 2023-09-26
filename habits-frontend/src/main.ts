@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import { faRightFromBracket, faJarWheat, faPencil, faPlus, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faRightFromBracket, faJarWheat, faPencil, faPlus, faArrowRight, faArrowLeft, faCheckSquare, faCalendar } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
 library.add(faUserSecret)
@@ -22,8 +22,8 @@ library.add(faPencil)
 library.add(faPlus)
 library.add(faArrowRight)
 library.add(faArrowLeft)
-
-
+library.add(faCheckSquare)
+library.add(faCalendar)
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
