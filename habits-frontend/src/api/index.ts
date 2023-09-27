@@ -1,4 +1,4 @@
-import { Client as Appwrite, Databases, Account, Permission, Role, Models } from 'appwrite';
+import { Client as Appwrite, Databases, Account, Permission, Role, Models, Query } from 'appwrite';
 import { Server } from '../utils/config';
 
 export type SdkType = {
@@ -14,11 +14,11 @@ export type ApiType = {
     createSession: (email: string, password: string) => Promise<Models.Session>,
     deleteCurrentSession: () => Promise<{}>,
     createDocument: (collectionId: string, data: any, userId: string) => Promise<Models.Document>,
-    listDocuments: (collectionId: string) => Promise<Models.DocumentList<Models.Document>>,
+    listDocuments: (collectionId: string, queries?: string[]) => Promise<Models.DocumentList<Models.Document>>,
+    resolveDocuments: (collectionId: string, queries?: string[]) => Promise<Models.Document[]>,
     updateDocument: (collectionId: string, documentId: string, data: any) => Promise<Models.Document>,
     deleteDocument: (collectionId: string, documentId: string) => Promise<{}>,
 }
-
 
 let api: ApiType = {
     sdk: null,
@@ -62,8 +62,30 @@ let api: ApiType = {
             ]);
     },
 
-    listDocuments: (collectionId) => {
-        return api.provider().database.listDocuments(Server.database, collectionId);
+    listDocuments: (collectionId, queries) => {
+        return api.provider().database.listDocuments(Server.database, collectionId, queries);
+    },
+
+    resolveDocuments: async (collectionId, queries) => {
+        let paginationQueries = queries?.concat([
+            Query.limit(25),
+            Query.offset(0)
+        ]);
+        let data = await api.provider().database.listDocuments(Server.database, collectionId, paginationQueries);
+        let count = data.documents.length;
+        let documents = data.documents;
+        let lastId = documents[documents.length - 1].$id;
+        while (count < data.total) {
+            paginationQueries = queries?.concat([
+                Query.limit(25),
+                Query.cursorAfter(lastId)
+            ]);
+            data = await api.provider().database.listDocuments(Server.database, collectionId, paginationQueries);
+            documents = documents.concat(data.documents);
+            count += data.documents.length;
+            lastId = data.documents[data.documents.length - 1].$id;
+        }
+        return documents;
     },
 
     updateDocument: (collectionId, documentId, data) => {

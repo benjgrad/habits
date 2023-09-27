@@ -20,11 +20,10 @@ const state = {
 
 const actions: ActionTree<HabitState, any> = {
     async fetchHabits({ commit }) {
-        console.log('fetchHabits')
         try {
-            const data = await api.listDocuments(Server.collections.habits);
-            console.log('data', data)
-            commit("setHabits", data.documents);
+            const data = await api.resolveDocuments(Server.collections.habits);
+            // commit("setError", { show: true, message: "TEST Failed to fetch Habit", color: "red" }, { root: true });
+            commit("setHabits", data);
         } catch (e) {
             console.log("Could not fetch documents ", e);
             commit(

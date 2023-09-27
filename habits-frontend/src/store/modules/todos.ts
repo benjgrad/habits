@@ -1,6 +1,7 @@
 import { ActionTree, GetterTree, MutationTree } from "vuex";
 import api from "../../api";
 import { Server } from "../../utils/config";
+import { Query } from "appwrite";
 
 interface Todo {
     $id: string;
@@ -19,10 +20,11 @@ const state = {
 };
 
 const actions: ActionTree<TodoState, any> = {
-    async fetchTodos({ commit }) {
+    async fetchTodos({ commit }, queries?: string[]) {
         try {
-            const data = await api.listDocuments(Server.collections.tasks);
-            commit("setTodos", data.documents);
+            let data = await api.resolveDocuments(Server.collections.tasks);
+
+            commit("setTodos", data);
         } catch (e) {
             console.log("Could not fetch documents ", e);
             commit(
@@ -42,7 +44,19 @@ const actions: ActionTree<TodoState, any> = {
                 Server.collections.tasks,
                 data,
                 userId,
-            );
+            ).catch((e) => {
+                console.log("Could not create document", e);
+                commit(
+                    "setError",
+                    {
+                        show: true,
+                        message: "Failed to Add Todo",
+                        color: "red",
+                    },
+                    { root: true }
+                );
+            });
+            console.log("response", response)
             commit("addTodo", response);
         } catch (e) {
             console.log("Could not create document", e);

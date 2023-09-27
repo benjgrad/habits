@@ -11,9 +11,10 @@
     </div>
 
     <Sidebar :handleCloseSidebar="() => { }" :isOpen="isOpen" />
-    <div @click="handleCloseSidebar" class="absolute z-[-1] top-0 left-0  h-full right-0 overflow-hidden">
+    <div @click="handleCloseSidebar"
+        :class="['z-[-1] h-screen duration-100 overflow-hidden w-[calc(100% - 4em)]', isOpen && !isSmallScreen ? 'ml-16' : '']">
         <div
-            :class="['transition-all md:top-0 top-12 h-full overflow-scroll', isOpen ? 'ml-16 mr-[-4rem]' : 'mx-0', isOpen && isSmallScreen ? 'blur-sm' : 'blur-none']">
+            :class="['h-full w-full transition-all duration-100 overflow-auto', isOpen && isSmallScreen ? 'blur-sm translate-x-16' : 'blur-none']">
             <router-view />
         </div>
     </div>
