@@ -1,7 +1,7 @@
 import { ActionTree, GetterTree, MutationTree } from "vuex";
 import api from "../../api";
 import { Server } from "../../utils/config";
-import { Query } from "appwrite";
+
 
 interface Todo {
     $id: string;
@@ -21,8 +21,9 @@ const state = {
 
 const actions: ActionTree<TodoState, any> = {
     async fetchTodos({ commit }, queries?: string[]) {
+        console.log("queries", queries)
         try {
-            let data = await api.resolveDocuments(Server.collections.tasks);
+            let data = await api.resolveDocuments(Server.collections.tasks, queries);
 
             commit("setTodos", data);
         } catch (e) {

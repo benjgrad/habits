@@ -32,6 +32,7 @@
 </template>
 <script lang="ts">
 import { mapActions, mapGetters } from "vuex";
+import { Query } from "appwrite";
 import TodoItem from "./TodoItem.vue";
 import AutoComplete from "./AutoComplete.vue";
 import moment from "moment";
@@ -69,7 +70,7 @@ export default {
                     content: option.title,
                     habits: option["$id"],
                     isComplete: false,
-                    date: new Date().toISOString(),
+                    date: moment(this.$route.params.date).toISOString(),
                 };
                 this.addTodo({
                     data,
@@ -79,7 +80,9 @@ export default {
         },
     },
     created() {
+        console.log(this.$route.params.date)
         if (!this.getAccount) this.fetchAccount();
+        console.log(moment().toISOString(), moment(this.$route.params.date).format())
         this.fetchTodos();
         this.fetchHabits();
     },

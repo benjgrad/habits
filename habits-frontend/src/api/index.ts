@@ -67,24 +67,32 @@ let api: ApiType = {
     },
 
     resolveDocuments: async (collectionId, queries) => {
+        if (!queries) {
+            queries = [];
+        }
         let paginationQueries = queries?.concat([
             Query.limit(25),
             Query.offset(0)
         ]);
         let data = await api.provider().database.listDocuments(Server.database, collectionId, paginationQueries);
+        console.log('got', data.documents.length, data)
         let count = data.documents.length;
         let documents = data.documents;
         let lastId = documents[documents.length - 1].$id;
         while (count < data.total) {
+            console.log("fetching more", count, lastId)
             paginationQueries = queries?.concat([
                 Query.limit(25),
                 Query.cursorAfter(lastId)
             ]);
+            console.log("paginationQueries", paginationQueries)
             data = await api.provider().database.listDocuments(Server.database, collectionId, paginationQueries);
+            console.log('got', data.documents.length, data)
             documents = documents.concat(data.documents);
             count += data.documents.length;
             lastId = data.documents[data.documents.length - 1].$id;
         }
+        console.log(documents);
         return documents;
     },
 
