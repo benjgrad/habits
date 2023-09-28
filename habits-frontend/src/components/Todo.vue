@@ -32,7 +32,6 @@
 </template>
 <script lang="ts">
 import { mapActions, mapGetters } from "vuex";
-import { Query } from "appwrite";
 import TodoItem from "./TodoItem.vue";
 import AutoComplete from "./AutoComplete.vue";
 import moment from "moment";
