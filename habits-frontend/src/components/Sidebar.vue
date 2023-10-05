@@ -18,6 +18,10 @@
             <div @click="() => navigateTo('/habits')" class=" sidebar-icon">
                 <font-awesome-icon :icon="['fas', 'jar-wheat']" />
             </div>
+            <hr class="border-gray-500">
+            <button @click="() => navigateTo('/recipes')" class="sidebar-icon">
+                <font-awesome-icon :icon="['fas', 'utensils']" />
+            </button>
             <hr class="border-gray-500 bottom-32 z-[-2] left-0 absolute w-full">
             <button @click="handleLogout" class="sidebar-icon absolute md:bottom-4 bottom-16 right-2">
                 <font-awesome-icon :icon="['fas', 'right-from-bracket']" />
@@ -46,8 +50,14 @@ export default {
             return () => this.navigateTo(path);
         },
         navigateTo(path: string) {
-            this.$router.push(path);
-            this.$props.handleCloseSidebar();
+            console.log('click', path)
+            try {
+
+                this.$router.push(path);
+                this.$props.handleCloseSidebar();
+            } catch (e) {
+                console.log(e)
+            }
         },
         goToTodoDay(e: any) {
             this.$router.push(`/todo/${moment(e.target.value).format('YYYY-MM-DD')}`);

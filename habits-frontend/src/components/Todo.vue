@@ -41,7 +41,6 @@ import moment from "moment";
 export default {
     components: { TodoItem, AutoComplete },
     name: "Todo",
-    props: ["date"],
     data() {
         return {
             moment,
@@ -60,7 +59,6 @@ export default {
     methods: {
         ...mapActions(["fetchTodos", "addTodo", "fetchAccount", "fetchHabits"]),
         handleAddTodo(option: any) {
-            console.log("handleAddTodo")
             const userId = this.getAccount["$id"];
             if (!userId) {
                 console.log("User id is null/empty");
@@ -81,7 +79,7 @@ export default {
     created() {
         console.log(this.$route.params.date)
         if (!this.getAccount) this.fetchAccount();
-        console.log(moment().toISOString(), moment(this.$route.params.date).format())
+        // console.log(moment().toISOString(), moment(this.$route.params.date).format())
         this.fetchTodos();
         this.fetchHabits();
     },

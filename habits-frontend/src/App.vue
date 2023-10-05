@@ -1,5 +1,5 @@
 <template>
-  <alert v-if="getError['show']" :message="getError['message']" :color="getError['color']" />
+  <alert v-show="getError['show']" :message="getError['message']" :color="getError['color']" />
   <router-view />
 </template>
 

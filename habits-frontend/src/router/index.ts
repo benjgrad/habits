@@ -5,6 +5,8 @@ import SignUp from "../components/SignUp.vue";
 import Dashboard from "../components/Dashboard.vue";
 import Todo from "../components/Todo.vue";
 import Habits from "../components/Habits.vue";
+import Recipes from "../components/Recipes.vue";
+import Recipe from "../components/Recipe.vue";
 import CreateHabit from "../components/CreateHabit.vue";
 import store from "../store";
 
@@ -36,6 +38,16 @@ const routes = [
                 path: "/habits/:id",
                 name: "CreateHabit",
                 component: CreateHabit,
+            },
+            {
+                path: "/recipes",
+                name: "Recipes",
+                component: Recipes
+            },
+            {
+                path: "/recipes/:id",
+                name: "Recipe",
+                component: Recipe
             },
             // {
             //     path: "/goals",

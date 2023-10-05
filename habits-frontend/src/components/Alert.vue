@@ -1,6 +1,6 @@
 <template>
     <div :class="[
-        `bg-${color}-500`,
+        `z-10 bg-${color}-500`,
         'text-white px-6 py-4 border-0 rounded absolute right-0 mt-10 mr-10',
     ]">
         <span class="text-xl inline-block mr-5 align-middle">

@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 import account from './modules/account';
 import todos from './modules/todos';
 import habits from './modules/habits';
+import recipes from './modules/recipes';
 
 type StateType = {
     error: ErrorType,
@@ -37,6 +38,7 @@ const store = createStore({
         account,
         todos,
         habits,
+        recipes,
     }
 });
 

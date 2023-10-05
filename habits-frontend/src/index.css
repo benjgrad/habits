@@ -34,4 +34,12 @@
     .datepicker-input::-webkit-calendar-picker-indicator {
         @apply absolute left-0 top-0 w-full h-full opacity-0 m-0 p-0 cursor-pointer;
     }
+
+    .markdown ol {
+        @apply list-decimal list-inside;
+    }
+
+    .markdown ul {
+        @apply list-disc list-inside;
+    }
 }
