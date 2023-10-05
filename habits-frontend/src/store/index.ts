@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import account from './modules/account';
 import todos from './modules/todos';
-import habits from './habits';
+import habits from './modules/habits';
 
 type StateType = {
     error: ErrorType,
