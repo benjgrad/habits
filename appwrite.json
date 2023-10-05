@@ -1,0 +1,24 @@
+{
+    "projectId": "650729a79197db741fca",
+    "projectName": "",
+    "functions": [
+        {
+            "$id": "651edddc7484996a6cc2",
+            "name": "my-function",
+            "runtime": "node-16.0",
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15,
+            "enabled": true,
+            "logging": true,
+            "entrypoint": "src/main.js",
+            "commands": "npm install",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "path": "functions/my-function"
+        }
+    ]
+}
